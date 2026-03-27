@@ -1,0 +1,27 @@
+alertmanager:
+  enabled: true
+  config:
+    route:
+      receiver: 'slack-notifications'
+      group_by: ['alertname', 'namespace']
+    receivers:
+    - name: 'slack-notifications'
+      slack_configs:
+      - api_url: '' # i removed my slack url after completion of project
+        send_resolved: true
+        title: 'K8s Alert: {{ .Status | toUpper }}'
+        text: '{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}'
+prometheus:
+  prometheusSpec:
+    retention: 2d
+    resources:
+      requests:
+        memory: 512Mi
+      limits:
+        memory: 1Gi
+grafana:
+  resources:
+    requests:
+      memory: 128Mi
+    limits:
+      memory: 256Mi
