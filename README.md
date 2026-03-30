@@ -89,7 +89,8 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --create-namespace \
   -f custom-values.yaml
 
-![Deployment now running](images/deployment ruuning.png)
+<img width="1359" height="588" alt="deployment ruuning" src="https://github.com/user-attachments/assets/b457c1a7-8c55-499a-a5d5-87803a581b61" />
+
 
 ### Phase 3: Access & Visualize (Grafana)
 
@@ -98,8 +99,13 @@ Port-Forward the UI:
 ```bash
 kubectl port-forward svc/observability-grafana 8080:80 -n monitoring --address 0.0.0.0
 Log In: Navigate to http://<YOUR_EC2_PUBLIC_IP>:8080 (Default credentials: admin / prom-operator).
+<img width="1584" height="629" alt="inbound rules 01" src="https://github.com/user-attachments/assets/9b722a54-efc9-4533-833d-8ecdb8d221a7" />
+
 
 Import Dashboard: Import Dashboard ID 15661 for a comprehensive Kubernetes cluster overview. Select observability-prometheus as the data source.
+<img width="1583" height="730" alt="grafana 01" src="https://github.com/user-attachments/assets/1799e2b2-bda9-493b-ab78-38e36924df40" />
+<img width="1585" height="735" alt="grafana 02" src="https://github.com/user-attachments/assets/d83c8a65-83cc-4b19-8f89-7368be5f4311" />
+<img width="1585" height="739" alt="grafana 03" src="https://github.com/user-attachments/assets/45515487-3430-43a1-bfa6-82a28cf49f74" />
 
 Testing the Setup
 To verify metrics are flowing, deploy a dummy application and scale it up to trigger resource usage:
@@ -108,4 +114,10 @@ To verify metrics are flowing, deploy a dummy application and scale it up to tri
 kubectl create namespace demo-app
 kubectl create deployment nginx-dummy --image=nginx -n demo-app
 kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
+<img width="1179" height="199" alt="namespce inginx app deploy" src="https://github.com/user-attachments/assets/c1caa3e6-006c-424a-8cbb-93692c9b26d6" />
+<img width="1209" height="165" alt="namespace inginx app deploy" src="https://github.com/user-attachments/assets/e1ed919b-7110-4f42-9d39-b82ff9f54544" />
+<img width="1578" height="735" alt="new grafana showing the nginx app" src="https://github.com/user-attachments/assets/5c06d092-e92f-48d2-8613-7fdbc4d77165" />
+<img width="1581" height="637" alt="new grafana" src="https://github.com/user-attachments/assets/5f262fb5-d39c-49f3-ad94-798e4a39bbe7" />
+<img width="1589" height="729" alt="new grafana 03" src="https://github.com/user-attachments/assets/528edd83-f536-4c08-8b1d-df61003c3600" />
+
 
