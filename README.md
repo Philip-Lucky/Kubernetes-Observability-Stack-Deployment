@@ -104,7 +104,7 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --create-namespace \
   -f custom-values.yaml
 
-![Deployed](images/deployment-running.png)
+![Deployed](images/ec2-instance.png)
 
 
 
