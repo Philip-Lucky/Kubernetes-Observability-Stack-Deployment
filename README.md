@@ -35,13 +35,13 @@ mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown $(id -u):$(id -g) ~/.kube/config
 ```
-Install Helm:
+3. **Install Helm:**
 
 ```bash
 curl [https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3](https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3) | bash
 ```
 
-Configure Alertmanager (Slack Setup)
+4. **Configure Alertmanager (Slack Setup)**
 Before deploying the stack, we need to generate a webhook URL so Alertmanager can send critical alerts directly to your team's Slack channel.
 
 Go to api.slack.com/apps and click Create New App (From scratch).
@@ -54,8 +54,12 @@ Click Add New Webhook to Workspace, pick the channel where you want alerts to go
 
 Copy the Webhook URL provided (it starts with https://hooks.slack.com/...).
 
+![Slack](slack-UI-FOR-ALERT.png)
 
-Phase 2: Deploy the Observability Stack
+
+
+### Phase 2: Deploy the Observability Stack
+
 We apply strict memory limits to prevent the stack from crashing the 4GB instance, while embedding the Slack webhook for Alertmanager.
 
  
@@ -105,7 +109,7 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --create-namespace \
   -f custom-values.yaml
 ```
-![Deployed](images/ec2-instance.png)
+![Deployed](deployment-running.png)
 
 
 
@@ -117,9 +121,14 @@ Port-Forward the UI:
 ```bash
 kubectl port-forward svc/observability-grafana 8080:80 -n monitoring --address 0.0.0.0
 Log In: Navigate to http://<YOUR_EC2_PUBLIC_IP>:8080 (Default credentials: admin / prom-operator).
-
+```
 
 Import Dashboard: Import Dashboard ID 15661 for a comprehensive Kubernetes cluster overview. Select observability-prometheus as the data source.
+
+![Grafana](grafana-01.png)
+![Grafana](grafana-02.png)
+![Grafana](grafana-03.png)
+
 
 
 To verify metrics are flowing, deploy a dummy application and scale it up to trigger resource usage:
@@ -128,5 +137,32 @@ To verify metrics are flowing, deploy a dummy application and scale it up to tri
 kubectl create namespace demo-app
 kubectl create deployment nginx-dummy --image=nginx -n demo-app
 kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
+```
+![nginx app](namespace-inginx-app deploy.png)
+![nginx app](namespace-inginx-app-running.png)
+
+
+
+**grafana dashboard showing the new deployed app**
+![nginx app](new-grafana.png)
+
+![nginx app](new-grafana-showing-the-nginx app.png)
+
+![nginx app](new-grafana-03.png)
+
+
+**The EC2 Instance Running the Project**
+
+![EC2](ec2-instance.png)
+![EC2](inbound-rules 01.png)
+
+
+
+
+**AUTHOR**
+NAME: PHILIP LUCKY
+EMAIL: philipslucky24@gmail.com
+
+
 
 
