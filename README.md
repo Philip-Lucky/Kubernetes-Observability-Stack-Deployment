@@ -34,11 +34,12 @@ Install a lightweight Kubernetes cluster and the Helm package manager.
 mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown $(id -u):$(id -g) ~/.kube/config
+```
 Install Helm:
 
 ```bash
 curl [https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3](https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3) | bash
-
+```
 
 Configure Alertmanager (Slack Setup)
 Before deploying the stack, we need to generate a webhook URL so Alertmanager can send critical alerts directly to your team's Slack channel.
@@ -63,7 +64,7 @@ We apply strict memory limits to prevent the stack from crashing the 4GB instanc
 ```bash
 helm repo add prometheus-community [https://prometheus-community.github.io/helm-charts](https://prometheus-community.github.io/helm-charts)
 helm repo update
-
+```
 2. **Create the custom-values.yaml file:**
 Note: Replace YOUR_SLACK_WEBHOOK_URL with your actual Slack URL before deploying.
 
@@ -95,7 +96,7 @@ grafana:
       memory: 128Mi
     limits:
       memory: 256Mi
-
+```
 3. **Deploy via Helm:**
 
 ```bash
@@ -103,7 +104,7 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --create-namespace \
   -f custom-values.yaml
-
+```
 ![Deployed](images/ec2-instance.png)
 
 
