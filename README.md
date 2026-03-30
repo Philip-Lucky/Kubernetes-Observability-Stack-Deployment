@@ -89,6 +89,7 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --create-namespace \
   -f custom-values.yaml
 
+![Deployment now running](images/deployment ruuning.png)
 
 ### Phase 3: Access & Visualize (Grafana)
 
