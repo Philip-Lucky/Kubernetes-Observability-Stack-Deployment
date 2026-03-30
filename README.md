@@ -54,7 +54,7 @@ Click Add New Webhook to Workspace, pick the channel where you want alerts to go
 
 Copy the Webhook URL provided (it starts with https://hooks.slack.com/...).
 
-![Slack](slack-UI-FOR-ALERT.png)
+![Slack](images/slack-UI-FOR-ALERT.png)
 
 
 
@@ -109,7 +109,7 @@ helm install observability prometheus-community/kube-prometheus-stack \
   --create-namespace \
   -f custom-values.yaml
 ```
-![Deployed](deployment-running.png)
+![Deployed](images/deployment-running.png)
 
 
 
@@ -125,9 +125,9 @@ Log In: Navigate to http://<YOUR_EC2_PUBLIC_IP>:8080 (Default credentials: admin
 
 Import Dashboard: Import Dashboard ID 15661 for a comprehensive Kubernetes cluster overview. Select observability-prometheus as the data source.
 
-![Grafana](grafana-01.png)
-![Grafana](grafana-02.png)
-![Grafana](grafana-03.png)
+![Grafana](images/grafana-01.png)
+![Grafana](images/grafana-02.png)
+![Grafana](images/grafana-03.png)
 
 
 
@@ -138,23 +138,23 @@ kubectl create namespace demo-app
 kubectl create deployment nginx-dummy --image=nginx -n demo-app
 kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
 ```
-![nginx app](namespace-inginx-app deploy.png)
-![nginx app](namespace-inginx-app-running.png)
+![nginx app](images/namespace-inginx-app deploy.png)
+![nginx app](images/namespace-inginx-app-running.png)
 
 
 
 **grafana dashboard showing the new deployed app**
-![nginx app](new-grafana.png)
+![nginx app](images/new-grafana.png)
 
 ![nginx app](new-grafana-showing-the-nginx app.png)
 
-![nginx app](new-grafana-03.png)
+![nginx app](images/new-grafana-03.png)
 
 
 **The EC2 Instance Running the Project**
 
-![EC2](ec2-instance.png)
-![EC2](inbound-rules 01.png)
+![EC2](images/ec2-instance.png)
+![EC2](images/inbound-rules 01.png)
 
 
 
