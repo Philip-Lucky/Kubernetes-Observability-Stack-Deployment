@@ -38,9 +38,24 @@ Install Helm:
 
 ```bash
 curl [https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3](https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3) | bash
+
+
+Configure Alertmanager (Slack Setup)
+Before deploying the stack, we need to generate a webhook URL so Alertmanager can send critical alerts directly to your team's Slack channel.
+
+Go to api.slack.com/apps and click Create New App (From scratch).
+
+Name the app (e.g., "K8s Alerts") and select your workspace.
+
+Under "Features" on the left menu, click Incoming Webhooks and toggle it to On.
+
+Click Add New Webhook to Workspace, pick the channel where you want alerts to go (e.g., #monitoring), and click Allow.
+
+Copy the Webhook URL provided (it starts with https://hooks.slack.com/...).
+
+
 Phase 2: Deploy the Observability Stack
 We apply strict memory limits to prevent the stack from crashing the 4GB instance.
-
 
  
 3. **Add the Helm Repository:**
