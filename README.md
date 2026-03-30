@@ -55,16 +55,16 @@ Copy the Webhook URL provided (it starts with https://hooks.slack.com/...).
 
 
 Phase 2: Deploy the Observability Stack
-We apply strict memory limits to prevent the stack from crashing the 4GB instance.
+We apply strict memory limits to prevent the stack from crashing the 4GB instance, while embedding the Slack webhook for Alertmanager.
 
  
-3. **Add the Helm Repository:**
+1. **Add the Helm Repository:**
 
 ```bash
 helm repo add prometheus-community [https://prometheus-community.github.io/helm-charts](https://prometheus-community.github.io/helm-charts)
 helm repo update
 
-4. **Create the custom-values.yaml file:**
+2. **Create the custom-values.yaml file:**
 Note: Replace YOUR_SLACK_WEBHOOK_URL with your actual Slack URL before deploying.
 
 ```YAML
@@ -96,13 +96,16 @@ grafana:
     limits:
       memory: 256Mi
 
-5. **Deploy via Helm:**
+3. **Deploy via Helm:**
 
 ```bash
 helm install observability prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
   --create-namespace \
   -f custom-values.yaml
+
+![Deployed](images/deployment running.png)
+
 
 
 
