@@ -138,7 +138,7 @@ kubectl create namespace demo-app
 kubectl create deployment nginx-dummy --image=nginx -n demo-app
 kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
 ```
-![nginx app](images/namespace-inginx-app deploy.png)
+![nginx app](images/namespace-inginx-app-deploy.png)
 ![nginx app](images/namespace-inginx-app-running.png)
 
 
@@ -146,7 +146,7 @@ kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
 **grafana dashboard showing the new deployed app**
 ![nginx app](images/new-grafana.png)
 
-![nginx app](new-grafana-showing-the-nginx app.png)
+![nginx app](new-grafana-showing-the-nginx-app.png)
 
 ![nginx app](images/new-grafana-03.png)
 
@@ -154,7 +154,7 @@ kubectl scale deployment nginx-dummy --replicas=5 -n demo-app
 **The EC2 Instance Running the Project**
 
 ![EC2](images/ec2-instance.png)
-![EC2](images/inbound-rules 01.png)
+![EC2](images/inbound-rules-01.png)
 
 
 
